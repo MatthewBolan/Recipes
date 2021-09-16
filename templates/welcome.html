@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1 class="bg-dark text-center text-primary">Welcome {{user.first_name}}!</h1>
+
+    <table class="table table-dark table-striped text-primary"">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Under 30 Minutes?</th>
+            <th scope="col" class="text-end">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for recipe in user.recipes %}
+            <tr>
+
+                <td> {{recipe.name}} </td>
+
+                {% if recipe.under_30 == 1 %}
+
+                <td>Yes</td>
+
+                {% else %}
+
+                <td>No</td>
+
+                {% endif %}
+
+                <td>
+                
+                    <div class="d-flex justify-content-evenly">
+                        <a href="/show/recipe/{{recipe.id}}" class="fs-5 ">View Instructions</a>
+                        <p class="fs-5">|</p>
+                        <a href="/edit/recipe/{{recipe.id}}" class="fs-5">Edit</a>
+                        <p class="fs-5">|</p>
+                        <a href="/recipe/delete/{{recipe.id}}" class="fs-5">Delete</a>
+                    </div>
+                
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/add/recipe" class="btn btn-dark btn-lg mx-3">Add A New Recipe</a>
+
+    <a href="/logout" class="btn btn-primary btn-lg">Logout</a>
+</body>
+</html>

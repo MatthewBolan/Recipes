@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AddUsers</title>
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    
+    </head>
+    <body>
+    
+    <div class="d-flex justify-content-center">
+    
+        <form action="/recipe/edited/{{edit.id}}" method="POST" class="bg-dark text-primary w-50 p-3">
+    
+            <h1 class="text-center">Edit Recipe!</h1>
+
+            {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+
+        {% if messages %}
+
+        <div class="alert alert-danger" role="alert">
+
+            {% for message in messages %}
+
+            <p> {{message}} </p>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+        {% endwith %}
+    
+            <div class="mb-3">
+    
+                <label for="name" class="form-label">Name:</label>
+    
+                <input type="text" class="form-control" name="name" aria-describedby="emailHelp" value="{{edit.name}}" >
+    
+            </div>
+    
+            <div class="mb-3">
+    
+                <label for="description" class="form-label">Description:</label>
+    
+                <textarea class="form-control" name="description" rows="5">{{edit.description}}</textarea>
+    
+            </div>
+    
+            <div class="mb-3">
+    
+                <label for="instruction" class="form-label">Instruction:</label>
+    
+                <textarea class="form-control" name="instruction" rows="5" >{{edit.instruction}}</textarea>
+    
+            </div>
+    
+            <div class="d-flex justify-content-end">
+    
+            <label for="date_made" class="form-label mx-3">Date Made On:</label>
+    
+            <input type = "date" name = "date_made" value="{{edit.date_made.strftime('%Y-%m-%d')}}">
+    
+            </div>
+    
+            <div class="d-flex justify-content-end mt-3">
+                <label for="under_30" class="form-label ">Under 30 Minutes?</label>
+            </div>
+    
+                    <div class="d-flex justify-content-end">
+    
+                
+                        <div class="form-check mx-3">
+                            <input class="form-check-input" type="radio" name="under_30" value="1">
+                            <label class="form-check-label" for="1">
+                            Yes
+                            </label>
+                        </div>
+    
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="under_30" value="0" checked>
+                            <label class="form-check-label" for="0">
+                            No
+                            </label>
+                        </div>
+    
+                    </div>
+    
+    
+            
+    
+            <input type="submit" value="Edit" class="btn btn-dark text-primary border border-white">
+            
+        </form>
+    </div>
+    
+    
+    
+        <div class="d-flex justify-content-end">
+            <a href="/welcome" class="btn btn-dark btn-lg text-primary mx-3">Home</a>
+            <a href="/logout" class="btn btn-primary btn-lg">Logout</a>
+        </div>
+    
+    
+    
+    </body>
+    </html>
+    
