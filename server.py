@@ -76,7 +76,7 @@ def welcome():
 
     }
 
-    return render_template("welcome.html", user = User.user_by_id_recipes(data))
+    return render_template("welcome.html", user = User.user_by_id(data), recipes=Recipe.display_all_recipes())
 
 
 
@@ -261,6 +261,8 @@ def recipe_show(id):
         'id': session ['user_id']
 
     }
+
+    
 
 
 

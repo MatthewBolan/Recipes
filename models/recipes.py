@@ -59,6 +59,26 @@ class Recipe:
 
     @classmethod
 
+    def display_all_recipes(cls):
+
+            query = "SELECT * FROM recipes;"
+
+            results = connectToMySQL('recipes_users_schema').query_db(query)
+
+            recipes = []
+
+            for x in results:
+
+                recipes.append(cls(x))
+
+            return recipes
+
+
+
+
+
+    @classmethod
+
     def get_one_recipe(cls,data):
 
         query = "SELECT * FROM recipes WHERE id = %(id)s"
@@ -123,10 +143,16 @@ class Recipe:
             flash ("Need To Select A Date!", "recipe")
 
             valid = False
-        
-        else:
 
-            return valid
+        if 'under_30' not in recipe :
+
+            flash ("Need To Select Yes Or No Field. Please Try Again!", "recipe")
+
+            valid = False
+
+
+
+        return valid
 
 
 

@@ -65,51 +65,6 @@ class User:
 
 
 
-
-
-    @classmethod
-
-    def user_by_id_recipes(cls,data):
-
-        query = "SELECT * FROM users LEFT JOIN recipes on users.id = recipes.user_id WHERE users.id = %(id)s;"
-
-        results = connectToMySQL('recipes_users_schema').query_db(query,data)
-
-        print (results)
-
-        users = cls(results[0])
-
-        for recipe in results:
-
-            x = {
-
-                'id': recipe['recipes.id'],
-
-                'name': recipe['name'],
-
-                'description': recipe['description'],
-
-                'instruction': recipe['instruction'],
-
-                'under_30': recipe['under_30'],
-
-                'date_made': recipe['date_made'],
-
-                'created_at': recipe['recipes.created_at'],
-
-                'updated_at': recipe['recipes.updated_at'],
-
-                'user_id': recipe['user_id']
-
-            }
-
-            users.recipes.append(Recipe(x))
-
-        return users
-
-
-
-
     @classmethod
 
     def user_by_email(cls,data):
@@ -173,6 +128,6 @@ class User:
             valid = False
 
 
-        else:
 
-            return valid
+
+        return valid
